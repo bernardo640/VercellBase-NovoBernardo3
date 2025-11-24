@@ -1,0 +1,39 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/cientista/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por nome">
+  <button type="submit">Buscar</button>
+</form>
+
+<a href="/cientista/add">+ Cientista</a>
+
+<table border="1">
+  <tr>
+    <th>Foto</th>
+    <th>Nome</th>
+    <th>Especialidade</th>
+    <th>Experiência</th>
+    <th>Ações</th>
+  </tr>
+
+  <% cientistas.forEach(cientista => { %>
+    <tr>
+      <td>
+        <% if (cientista.foto) { %>
+          <img src="<%= cientista.foto %>" width="100">
+        <% } else { %>
+          <span>Sem foto</span>
+        <% } %>
+      </td>
+      <td><%= cientista.nome %></td>
+      <td><%= cientista.especialidade %></td>
+      <td><%= cientista.tempoExperiencia %> anos</td>
+      <td>
+        <a href="/cientista/edt/<%= cientista._id %>">Editar</a> |
+        <a href="/cientista/del/<%= cientista._id %>">Excluir</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include('../rodape.ejs') %>

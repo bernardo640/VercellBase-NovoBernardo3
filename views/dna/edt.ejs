@@ -1,0 +1,30 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Editar DNA</h1>
+
+<a href="/dna/lst">Voltar à Lista</a>
+
+<form action="/dna/edt/<%= dna._id %>" method="post" enctype="multipart/form-data">
+  <label>Sequência Genética:</label>
+  <input type="text" name="sequenciaGenetica" value="<%= dna.sequenciaGenetica %>" required><br>
+
+  <label>Pureza (%):</label>
+  <input type="number" name="pureza" value="<%= dna.pureza %>" required><br>
+
+  <label>Origem do Fóssil:</label>
+  <input type="text" name="origemFossil" value="<%= dna.origemFossil %>" required><br>
+
+  <label>Imagem Atual:</label><br>
+  <% if (dna.imagemFossil) { %>
+    <img src="data:image/png;base64,<%= dna.imagemFossil.toString('base64') %>" width="200"><br>
+  <% } else { %>
+    <em>Sem imagem</em><br>
+  <% } %>
+
+  <label>Nova Imagem (opcional):</label>
+  <input type="file" name="imagemFossil" accept="image/png"><br>
+
+  <button type="submit">Salvar Alterações</button>
+</form>
+
+<%- include('../rodape.ejs') %>

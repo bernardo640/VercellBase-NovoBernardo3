@@ -1,0 +1,27 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/dinossauro/edt/<%= dino._id %>" method="post" enctype="multipart/form-data">
+  <label>Nome:</label>
+  <input type="text" name="nome" value="<%= dino.nome %>" required><br>
+
+  <label>Espécie:</label>
+  <input type="text" name="especie" value="<%= dino.especie %>" required><br>
+
+  <label>Idade (anos):</label>
+  <input type="number" name="idade" value="<%= dino.idade %>" required><br>
+
+  <label>Nível de Agressividade (1–10):</label>
+  <input type="number" name="nivelAgressividade" value="<%= dino.nivelAgressividade %>" min="1" max="10" required><br>
+
+  <% if (dino.imagem) { %>
+    <p>Imagem atual:</p>
+    <img src="data:image/png;base64,<%= dino.imagem.toString('base64') %>" width="150"><br>
+  <% } %>
+
+  <label>Nova Imagem (opcional):</label>
+  <input type="file" name="imagem" accept="image/png"><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

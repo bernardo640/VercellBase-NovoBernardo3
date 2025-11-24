@@ -1,0 +1,29 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Registrar Venda de Dinossauro</h1>
+
+<a href="/vendas">Voltar para Lista de Vendas</a>
+
+<form action="/vendas/add" method="post" enctype="multipart/form-data">
+  <label>Nome do Dinossauro:</label><br>
+  <input type="text" name="nomeDino" required><br><br>
+
+  <label>Preço (R$):</label><br>
+  <input type="number" name="preco" step="0.01" required><br><br>
+
+  <label>Comprador:</label><br>
+  <input type="text" name="comprador"><br><br>
+
+  <label>Contato (telefone/email):</label><br>
+  <input type="text" name="contato"><br><br>
+
+  <label>Descrição:</label><br>
+  <textarea name="descricao" rows="4"></textarea><br><br>
+
+  <label>Imagem do Dinossauro (opcional):</label><br>
+  <input type="file" name="imagem" accept="image/*"><br><br>
+
+  <button type="submit">Salvar Venda</button>
+</form>
+
+<%- include('../rodape.ejs') %>

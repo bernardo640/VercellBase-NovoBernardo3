@@ -1,0 +1,38 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Lista de Canais</h1>
+
+<form action="/canal/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por nome">
+  <button type="submit">Buscar</button>
+</form>
+
+<a href="/canal/add">+ Canal</a>
+
+<table border="1">
+  <tr>
+    <th>Imagem</th>
+    <th>Nome</th>
+    <th>Inscritos</th>
+    <th>Ações</th>
+  </tr>
+  <% canais.forEach(canal => { %>
+    <tr>
+      <td>
+        <% if (canal.imagem) { %>
+          <img src="<%= canal.imagem %>" width="100" height="100">
+        <% } else { %>
+          <span>Sem imagem</span>
+        <% } %>
+      </td>
+      <td><%= canal.nome %></td>
+      <td><%= canal.inscritos %></td>
+      <td>
+        <a href="/canal/edt/<%= canal.id %>">Editar</a> |
+        <a href="/canal/del/<%= canal.id %>">Excluir</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include('../rodape.ejs') %>

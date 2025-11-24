@@ -1,0 +1,26 @@
+<%- include('../cabecalho.ejs') %>
+
+<a href="/cientista/lst">Voltar à lista</a>
+
+<form action="/cientista/edt/<%= cientista._id %>" method="post" enctype="multipart/form-data">
+  <label>Nome:</label>
+  <input type="text" name="nome" value="<%= cientista.nome %>" required><br>
+
+  <label>Especialidade:</label>
+  <input type="text" name="especialidade" value="<%= cientista.especialidade %>" required><br>
+
+  <label>Tempo de Experiência (anos):</label>
+  <input type="number" name="tempoExperiencia" value="<%= cientista.tempoExperiencia %>" required><br>
+
+  <% if (cientista.foto) { %>
+    <p>Foto atual:</p>
+    <img src="data:image/png;base64,<%= cientista.foto.toString('base64') %>" width="120"><br>
+  <% } %>
+
+  <label>Nova Foto (opcional):</label>
+  <input type="file" name="foto" accept="image/png"><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

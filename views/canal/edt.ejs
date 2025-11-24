@@ -1,0 +1,25 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Editar Canal</h1>
+
+<a href="/canal/lst">Listar Canais</a>
+
+<form action="/canal/edt/<%= canal._id %>" method="post" enctype="multipart/form-data">
+  <label>Nome:</label>
+  <input type="text" name="nome" value="<%= canal.nome %>" required><br>
+
+  <label>Inscritos:</label>
+  <input type="number" name="inscritos" value="<%= canal.inscritos %>" required><br>
+
+  <% if (canal.imagem) { %>
+    <label>Imagem atual:</label><br>
+    <img src="data:image/png;base64,<%= canal.imagem.toString('base64') %>" width="120" height="120"><br>
+  <% } %>
+
+  <label>Nova imagem (opcional):</label>
+  <input type="file" name="imagem" accept="image/png"><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

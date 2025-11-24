@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Admin</title>
+  <link rel="stylesheet" href="/css/stylesite.css">
+  <style>
+    .login-wrap{max-width:420px;margin:6vh auto;padding:2rem;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03);border-radius:8px}
+    .login-title{color:var(--accent);font-size:1.25rem;margin-bottom:0.5rem}
+    .form-field{display:block;margin-bottom:0.75rem}
+    .form-field input{width:100%;padding:0.6rem;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef8}
+    .form-actions{display:flex;gap:0.5rem;justify-content:flex-end;margin-top:1rem}
+    .btn{background:linear-gradient(90deg,var(--accent),#d97706);color:#021027;padding:.5rem .9rem;border-radius:6px;text-decoration:none;border:none;font-weight:700}
+    .link-muted{color:var(--muted);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-wrap">
+      <h2 class="login-title">Área Administrativa</h2>
+      <p class="muted">Faça login para acessar o painel administrativo.</p>
+      <form action="/admin/login" method="post">
+        <label class="form-field">
+          <input type="text" name="username" placeholder="Usuário" required>
+        </label>
+        <label class="form-field">
+          <input type="password" name="password" placeholder="Senha" required>
+        </label>
+        <div class="form-actions">
+          <a class="link-muted" href="/">Voltar</a>
+          <button class="btn" type="submit">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Lista de DNAs</h1>
+
+<a href="/dna/add">+ Novo DNA</a>
+
+<form action="/dna/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por origem ou sequência">
+  <button type="submit">Buscar</button>
+</form>
+
+<table border="1">
+  <tr>
+    <th>Imagem</th>
+    <th>Sequência Genética</th>
+    <th>Pureza (%)</th>
+    <th>Origem do Fóssil</th>
+    <th>Ações</th>
+  </tr>
+
+  <% if (dnas.length === 0) { %>
+    <tr><td colspan="5">Nenhum DNA encontrado</td></tr>
+  <% } else { %>
+    <% dnas.forEach(dna => { %>
+      <tr>
+        <td>
+          <% if (dna.imagemFossil) { %>
+            <img src="<%= dna.imagemFossil %>" width="80">
+          <% } else { %>
+            <em>Sem imagem</em>
+          <% } %>
+        </td>
+        <td><%= dna.sequenciaGenetica %></td>
+        <td><%= dna.pureza %></td>
+        <td><%= dna.origemFossil %></td>
+        <td>
+          <a href="/dna/edt/<%= dna._id %>">Editar</a> |
+          <a href="/dna/del/<%= dna._id %>" onclick="return confirm('Deseja excluir este DNA?')">Excluir</a>
+        </td>
+      </tr>
+    <% }) %>
+  <% } %>
+</table>
+
+<%- include('../rodape.ejs') %>

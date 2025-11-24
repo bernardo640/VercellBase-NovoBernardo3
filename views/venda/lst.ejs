@@ -1,0 +1,44 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Vendas de Dinossauros</h1>
+
+<a href="/vendas/add">+ Nova Venda</a>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%;margin-top:1rem;background:#fff;color:#000;">
+  <thead>
+    <tr>
+      <th>Imagem</th>
+      <th>Dinossauro</th>
+      <th>Preço (R$)</th>
+      <th>Comprador</th>
+      <th>Contato</th>
+      <th>Descrição</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (vendas && vendas.length) { %>
+      <% vendas.forEach(function(v){ %>
+        <tr>
+          <td style="width:120px;text-align:center;">
+            <% if (v.imagem) { %>
+              <img src="<%= v.imagem %>" alt="<%= v.nomeDino %>" style="max-width:100px;max-height:80px;object-fit:cover;" />
+            <% } else { %>
+              —
+            <% } %>
+          </td>
+          <td><%= v.nomeDino %></td>
+          <td>R$ <%= v.preco %></td>
+          <td><%= v.comprador || '—' %></td>
+          <td><%= v.contato || '—' %></td>
+          <td style="max-width:320px;overflow:hidden;text-overflow:ellipsis;"><%= v.descricao || '—' %></td>
+          <td><%= v.dataVenda ? new Date(v.dataVenda).toLocaleDateString('pt-BR') : '—' %></td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr><td colspan="7">Nenhuma venda registrada.</td></tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('../rodape.ejs') %>

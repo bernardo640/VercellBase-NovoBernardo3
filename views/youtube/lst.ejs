@@ -1,0 +1,43 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/youtube/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por nome">
+  <button type="submit">Buscar</button>
+</form>
+
+<a href="/youtube/add">+ video</a>
+
+<table border="1">
+  <tr>
+    <th>Miniatura</th>
+    <th>Título</th>
+    <th>Canal</th>
+    <th>Duração</th>
+    <th>Visualizações</th>
+    <th>Upload</th>
+    <th>Ações</th>
+  </tr>
+  <% videos.forEach(video => { %>
+    <tr>
+      <td>
+        <% if (video.miniatura) { %>
+          <img src="<%= video.miniatura%>" width="120" height="90">
+        <% } else { %>
+          <span>Sem imagem</span>
+        <% } %>
+      </td>
+      <td><%= video.titulo %></td>
+      <td><%= video.canal ? video.canal.nome : "Sem canal" %></td>
+      <td><%= video.duracao %>s</td>
+      <td><%= video.visualizacoes %></td>
+      <td><%= video.upload.toLocaleDateString("pt-BR") %></td>
+      <td>
+        <a href="/youtube/edt/<%= video._id %>">Editar</a> |
+        <a href="/youtube/del/<%= video._id %>">Excluir</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+
+<%- include('../rodape.ejs') %>

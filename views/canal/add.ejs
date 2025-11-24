@@ -1,0 +1,20 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Adicionar Canal</h1>
+
+<a href="/canal/lst">Listar Canais</a>
+
+<form action="/canal/add" method="post" enctype="multipart/form-data">
+  <label>Nome:</label>
+  <input type="text" name="nome" required><br>
+
+  <label>Inscritos:</label>
+  <input type="number" name="inscritos" required><br>
+
+  <label>Imagem (PNG):</label>
+  <input type="file" name="imagem" accept="image/png"><br>
+
+  <button type="submit">Cadastrar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

@@ -1,0 +1,23 @@
+<%- include('../cabecalho.ejs') %>
+
+<h1>Cadastrar DNA</h1>
+
+<a href="/dna/lst">Listar DNAs</a>
+
+<form action="/dna/add" method="post" enctype="multipart/form-data">
+  <label>Sequência Genética:</label>
+  <input type="text" name="sequenciaGenetica" required><br>
+
+  <label>Pureza (%):</label>
+  <input type="number" name="pureza" required><br>
+
+  <label>Origem do Fóssil:</label>
+  <input type="text" name="origemFossil" required><br>
+
+  <label>Imagem do Fóssil (PNG):</label>
+  <input type="file" name="imagemFossil" accept="image/png"><br>
+
+  <button type="submit">Cadastrar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

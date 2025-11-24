@@ -1,0 +1,26 @@
+<%- include('../cabecalho.ejs') %>
+
+<a href="/experimentoGenetico/lst">Voltar à Lista</a>
+
+<form action="/experimentoGenetico/edt/<%= experimento._id %>" method="post" enctype="multipart/form-data">
+  <label>Nome:</label>
+  <input type="text" name="nome" value="<%= experimento.nome %>" required><br>
+
+  <label>Descrição:</label>
+  <textarea name="descricao" rows="4" cols="40" required><%= experimento.descricao %></textarea><br>
+
+  <label>Data de Início:</label>
+  <input type="date" name="dataInicio" value="<%= experimento.dataInicio.toISOString().substring(0,10) %>" required><br>
+
+  <% if (experimento.imagem) { %>
+    <p>Imagem atual:</p>
+    <img src="data:image/png;base64,<%= experimento.imagem.toString('base64') %>" width="150"><br>
+  <% } %>
+
+  <label>Nova Imagem (opcional):</label>
+  <input type="file" name="imagem" accept="image/png"><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<%- include('../rodape.ejs') %>

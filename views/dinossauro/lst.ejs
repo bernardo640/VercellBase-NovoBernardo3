@@ -1,0 +1,41 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/dinossauro/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por nome">
+  <button type="submit">Buscar</button>
+</form>
+
+<a href="/dinossauro/add">+ Dinossauro</a>
+
+<table border="1">
+  <tr>
+    <th>Imagem</th>
+    <th>Nome</th>
+    <th>Espécie</th>
+    <th>Idade</th>
+    <th>Nível de Agressividade</th>
+    <th>Ações</th>
+  </tr>
+
+  <% dinos.forEach(dino => { %>
+    <tr>
+      <td>
+        <% if (dino.imagem) { %>
+          <img src="<%= dino.imagem %>" width="120" height="90">
+        <% } else { %>
+          <span>Sem imagem</span>
+        <% } %>
+      </td>
+      <td><%= dino.nome %></td>
+      <td><%= dino.especie %></td>
+      <td><%= dino.idade %> anos</td>
+      <td><%= dino.nivelAgressividade %>/10</td>
+      <td>
+        <a href="/dinossauro/edt/<%= dino._id %>">Editar</a> |
+        <a href="/dinossauro/del/<%= dino._id %>">Excluir</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include('../rodape.ejs') %>

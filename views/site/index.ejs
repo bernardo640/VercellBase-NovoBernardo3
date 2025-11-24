@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto InGen - Laboratório de Genética de Dinossauros</title>
+    <link rel="stylesheet" href="/css/stylesite.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <div>
+                    <h1 class="header-title">Projeto InGen</h1>
+                    <p class="header-subtitle">Laboratório de Genética de Dinossauros</p>
+                </div>
+                <nav class="main-nav">
+                    <a href="#dna">DNA</a>
+                    <a href="#experimentos">Experimentos</a>
+                    <a href="#dinos">Dinossauros</a>
+                    <a href="#cientistas">Equipe</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Bem-vindo ao Projeto InGen</h2>
+                    <p>Laboratório de genética de dinossauros — acompanhe amostras, experimentos e espécimes ativos.</p>
+                    <a class="btn-cta" href="/admin">Ir para Admin</a>
+                </div>
+                <div class="hero-visual"></div>
+            </section>
+            
+            <!-- DNA Section -->
+            <a id="dna"></a>
+            <section class="section">
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <h2 class="section-title">Amostras de DNA</h2>
+                </div>
+                
+                <div class="grid grid-3">
+                    <% if (dnas && dnas.length) { %>
+                        <% dnas.forEach(function(dna){ %>
+                            <div class="card">
+                                <div class="card-image-wrapper" style="--bg-image: url(<%= JSON.stringify(dna.imagemFossil || 'https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?auto=format&fit=crop&w=1080&q=60') %>)">
+                                    <% if (dna.imagemFossil) { %>
+                                        <img src="<%= dna.imagemFossil %>" alt="DNA Sample" class="card-image">
+                                    <% } else { %>
+                                        <img src="https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?auto=format&fit=crop&w=1080&q=60" alt="DNA Sample" class="card-image">
+                                    <% } %>
+                                    <span class="badge badge-top-right"><%= dna.origemFossil || '' %></span>
+                                </div>
+                                <div class="card-header">
+                                    <h3 class="card-title">Amostra de DNA</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="info-block">
+                                        <p class="info-label">Sequência Genética</p>
+                                        <p class="sequence"><%= dna.sequenciaGenetica %></p>
+                                    </div>
+                                    <div class="info-block">
+                                        <div class="progress-header">
+                                            <p class="info-label">Pureza do DNA</p>
+                                            <p class="purity-high"><%= dna.pureza %>%</p>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: <%= dna.pureza %>%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="info-block">
+                                        <p class="info-label">Origem do Fóssil</p>
+                                        <p class="info-text"><%= dna.origemFossil %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>Nenhuma amostra de DNA disponível.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Experiments Section -->
+            <a id="experimentos"></a>
+            <section class="section">
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 2v7.31"></path>
+                        <path d="M14 9.3V1.99"></path>
+                        <path d="M8.5 2h7"></path>
+                        <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+                        <path d="M5.58 16.5h12.85"></path>
+                    </svg>
+                    <h2 class="section-title">Experimentos Ativos</h2>
+                </div>
+                
+                <div class="grid grid-2">
+                    <% if (experimentos && experimentos.length) { %>
+                        <% experimentos.forEach(function(exp){ %>
+                            <div class="card card-large">
+                                <div class="card-image-wrapper card-image-large" style="--bg-image: url(<%= JSON.stringify(exp.imagem || 'https://images.unsplash.com/photo-1608037222022-62649819f8aa?auto=format&fit=crop&w=1080&q=60') %>)">
+                                    <% if (exp.imagem) { %>
+                                        <img src="<%= exp.imagem %>" alt="<%= exp.nome %>" class="card-image">
+                                    <% } else { %>
+                                        <img src="https://images.unsplash.com/photo-1608037222022-62649819f8aa?auto=format&fit=crop&w=1080&q=60" alt="Experimento" class="card-image">
+                                    <% } %>
+                                    <div class="image-overlay"></div>
+                                    <span class="badge badge-top-right">Em Progresso</span>
+                                </div>
+                                <div class="card-header">
+                                    <h3 class="card-title"> <%= exp.nome %> </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="info-block">
+                                        <p class="info-label">Descrição do Experimento</p>
+                                        <p class="info-text"><%= exp.descricao %></p>
+                                    </div>
+                                    <div class="date-info">
+                                        <div>
+                                            <p class="info-label-small">Data de Início</p>
+                                            <p class="info-text-small"><%= exp.dataInicio || '' %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>Nenhum experimento ativo cadastrado.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Dinosaurs Section -->
+            <a id="dinos"></a>
+            <section class="section">
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 2l-4 4-3-3-4 4-3-3-4 4v11l4-4 3 3 4-4 3 3 4-4V2z"/>
+                    </svg>
+                    <h2 class="section-title">Espécimes Ativos</h2>
+                </div>
+                
+                <div class="grid grid-3">
+                    <% if (dinos && dinos.length) { %>
+                        <% dinos.forEach(function(dino){ %>
+                            <div class="card">
+                                <div class="card-image-wrapper card-image-large" style="--bg-image: url(<%= JSON.stringify(dino.imagem || 'https://images.unsplash.com/photo-1645539346874-42b71fc5ffa6?auto=format&fit=crop&w=1080&q=60') %>)">
+                                    <% if (dino.imagem) { %>
+                                        <img src="<%= dino.imagem %>" alt="<%= dino.nome %>" class="card-image">
+                                    <% } else { %>
+                                        <img src="https://images.unsplash.com/photo-1645539346874-42b71fc5ffa6?auto=format&fit=crop&w=1080&q=60" alt="Dinossauro" class="card-image">
+                                    <% } %>
+                                    <div class="image-overlay"></div>
+                                    <span class="badge badge-top-right badge-danger">Perigo</span>
+                                </div>
+                                <div class="card-header">
+                                    <h3 class="card-title"><%= dino.nome %></h3>
+                                    <p class="card-subtitle"><%= dino.especie %></p>
+                                </div>
+                                <div class="card-content">
+                                    <div class="info-block">
+                                        <p class="info-label">Idade</p>
+                                        <p class="info-text"><%= dino.idade %> anos</p>
+                                    </div>
+                                    <div class="info-block">
+                                        <div class="progress-header">
+                                            <p class="info-label">Nível de Agressividade</p>
+                                            <div class="aggression-info">
+                                                <span class="info-text-small"><%= dino.nivelAgressividade %>%</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill progress-danger" style="width: <%= dino.nivelAgressividade %>%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>Nenhum espécime ativo cadastrado.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            
+
+            <!-- Scientists Section -->
+            <a id="cientistas"></a>
+            <section class="section">
+                <div class="section-header">
+                    <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 17v2H2v-2s0-4 7-4 7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59 5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7z"/>
+                    </svg>
+                    <h2 class="section-title">Equipe Científica</h2>
+                </div>
+
+                <div class="grid grid-4">
+                    <% if (cientistas && cientistas.length) { %>
+                        <% cientistas.forEach(function(c){ %>
+                            <div class="card scientist-card <%= (c.nome && c.nome.toLowerCase().includes('marcelo')) ? 'lead' : '' %>">
+                                <div class="scientist-image-wrapper" style="--bg-image: url(<%= JSON.stringify(c.foto || 'https://images.unsplash.com/photo-1707944745899-104a4b12d945?auto=format&fit=crop&w=1080&q=60') %>)">
+                                    <% if (c.foto) { %>
+                                        <img src="<%= c.foto %>" alt="<%= c.nome %>" class="card-image">
+                                    <% } else { %>
+                                        <img src="https://images.unsplash.com/photo-1707944745899-104a4b12d945?auto=format&fit=crop&w=1080&q=60" alt="Cientista" class="card-image">
+                                    <% } %>
+                                    <div class="scientist-overlay"></div>
+                                    <div class="scientist-info">
+                                        <h3 class="scientist-name"><%= c.nome %>
+                                          <% if (c.nome && c.nome.toLowerCase().includes('marcelo')) { %>
+                                            <span class="lead-badge">Marcelo</span>
+                                          <% } %>
+                                        </h3>
+                                        <p class="scientist-specialty"><%= c.especialidade %></p>
+                                    </div>
+                                </div>
+                                <div class="card-content card-content-small">
+                                    <div class="experience-info">
+                                        <div>
+                                            <p class="info-label-small">Experiência</p>
+                                            <p class="info-text-small"><%= c.tempoExperiencia %> anos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>Nenhum membro da equipe cadastrado.</p>
+                    <% } %>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">InGen Laboratories © 2025 - Projeto Confidencial - Nível de Segurança: Máximo</p>
+        </div>
+    </footer>
+</body>
+</html>

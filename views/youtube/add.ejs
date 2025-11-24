@@ -1,0 +1,36 @@
+<%- include('../cabecalho.ejs') %>
+
+<a href="/youtube/lst">Listar video</a>
+
+<form action="/youtube/add" method="post" enctype="multipart/form-data">
+  <label>Título:</label>
+  <input type="text" name="titulo" required><br>
+
+  <label>Canal:</label>
+  <select name="canal" required>
+    <% canais.forEach(canal => { %>
+      <option value="<%= canal._id %>"><%= canal.nome %></option>
+    <% }) %>
+  </select><br>
+
+  <label>Duração (segundos):</label>
+  <input type="number" name="duracao" required><br>
+
+  <label>Visualizações:</label>
+  <input type="number" name="visualizacoes" required><br>
+
+  <label>Data de Upload:</label>
+  <input type="date" name="upload" required><br>
+
+  <label>Ações:</label>
+  <input type="text" name="acoes" required><br>
+
+  <!-- Campo novo -->
+  <label>Miniatura (PNG):</label>
+  <input type="file" name="miniatura" accept="image/png"><br>
+
+  <button type="submit">Cadastrar</button>
+</form>
+
+
+<%- include('../rodape.ejs') %>

@@ -1,0 +1,40 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/youtube/edt/<%= youtube._id %>" method="post" enctype="multipart/form-data">
+  <label>Título:</label>
+  <input type="text" name="titulo" value="<%= youtube.titulo %>" required><br>
+
+  <label>Canal:</label>
+  <select name="canal" required>
+    <% canais.forEach(canal => { %>
+      <option value="<%= canal._id %>" <%= youtube.canal && youtube.canal._id.toString() === canal._id.toString() ? "selected" : "" %>>
+        <%= canal.nome %>
+      </option>
+    <% }) %>
+  </select><br>
+
+  <label>Duração (segundos):</label>
+  <input type="number" name="duracao" value="<%= youtube.duracao %>" required><br>
+
+  <label>Visualizações:</label>
+  <input type="number" name="visualizacoes" value="<%= youtube.visualizacoes %>" required><br>
+
+  <label>Data de Upload:</label>
+  <input type="date" name="upload" value="<%= youtube.upload.toISOString().substring(0,10) %>" required><br>
+
+  <label>Ações:</label>
+  <input type="text" name="acoes" value="<%= youtube.acoes %>" required><br>
+
+  <% if (youtube.miniatura) { %>
+    <p>Miniatura atual:</p>
+    <img src="data:image/png;base64,<%= youtube.miniatura.toString('base64') %>" width="150"><br>
+  <% } %>
+
+  <label>Nova Miniatura (opcional):</label>
+  <input type="file" name="miniatura" accept="image/png"><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+
+<%- include('../rodape.ejs') %>

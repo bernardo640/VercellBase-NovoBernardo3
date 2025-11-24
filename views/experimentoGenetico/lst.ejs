@@ -1,0 +1,39 @@
+<%- include('../cabecalho.ejs') %>
+
+<form action="/experimentoGenetico/lst" method="post">
+  <input type="text" name="filtro" placeholder="Pesquisar por nome">
+  <button type="submit">Buscar</button>
+</form>
+
+<a href="/experimentoGenetico/add">+ Experimento</a>
+
+<table border="1">
+  <tr>
+    <th>Imagem</th>
+    <th>Nome</th>
+    <th>Descrição</th>
+    <th>Data de Início</th>
+    <th>Ações</th>
+  </tr>
+
+  <% experimentos.forEach(exp => { %>
+    <tr>
+      <td>
+        <% if (exp.imagem) { %>
+          <img src="<%= exp.imagem %>" width="120" height="90">
+        <% } else { %>
+          <span>Sem imagem</span>
+        <% } %>
+      </td>
+      <td><%= exp.nome %></td>
+      <td><%= exp.descricao %></td>
+      <td><%= new Date(exp.dataInicio).toLocaleDateString("pt-BR") %></td>
+      <td>
+        <a href="/experimentoGenetico/edt/<%= exp._id %>">Editar</a> |
+        <a href="/experimentoGenetico/del/<%= exp._id %>">Excluir</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include('../rodape.ejs') %>

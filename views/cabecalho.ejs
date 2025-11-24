@@ -1,0 +1,68 @@
+<!--Cabeçalho-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sistema Exemplo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    /* Fundo geral */
+    body {
+      background-color: #ffe6f2; /* rosa clarinho */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: #333;
+    }
+
+    .menu {
+      background-color: #ffb6c1; /* rosa fofo */
+      padding: 10px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu ul li {
+      margin: 0 15px;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: white;
+      background: #ff69b4; /* rosa mais forte nos botões */
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .menu ul li a:hover {
+      background: #ff85c1; /* tom mais clarinho ao passar o mouse */
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="menu">
+      <ul>
+        <li><a href="/" class="btn"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+        <li><a href="/aluno/lst" class="btn">Aluno</a></li>
+        <li><a href="/curso/lst" class="btn">Curso</a></li>
+        <li><a href="/youtube/lst" class="btn">Youtube</a></li>
+        <li><a href="/canal/lst" class="btn">Canal</a></li>
+        <li><a href="/cientista/lst" class="btn">Cientista</a></li>
+        <li><a href="/dinossauro/lst" class="btn">Dinossauro</a></li>
+        <li><a href="/experimentoGenetico/lst" class="btn">Experimento Genético</a></li>
+          <li><a href="/dna/lst" class="btn">DNA</a></li>
+
+      </ul>
+    </nav>
