@@ -13,16 +13,22 @@
     .form-actions{display:flex;gap:0.5rem;justify-content:flex-end;margin-top:1rem}
     .btn{background:linear-gradient(90deg,var(--accent),#d97706);color:#021027;padding:.5rem .9rem;border-radius:6px;text-decoration:none;border:none;font-weight:700}
     .link-muted{color:var(--muted);text-decoration:none}
+    .erro-box{background:#fee;border:1px solid #fcc;color:#c33;padding:0.75rem;border-radius:6px;margin-bottom:1rem;font-size:0.9rem}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="login-wrap">
-      <h2 class="login-title">Área Administrativa</h2>
+      <h2 class="login-title">🔐 Área Administrativa</h2>
       <p class="muted">Faça login para acessar o painel administrativo.</p>
+      
+      <% if (typeof erro !== 'undefined') { %>
+        <div class="erro-box"><%= erro %></div>
+      <% } %>
+      
       <form action="/admin/login" method="post">
         <label class="form-field">
-          <input type="text" name="username" placeholder="Usuário" required>
+          <input type="text" name="username" placeholder="Usuário" required autofocus>
         </label>
         <label class="form-field">
           <input type="password" name="password" placeholder="Senha" required>

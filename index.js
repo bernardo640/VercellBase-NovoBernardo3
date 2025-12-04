@@ -3,6 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import mongoose from 'mongoose';
+import session from 'express-session';
 // garante conexão com o MongoDB (arquivo faz o connect)
 import './config/conexao.js';
 
@@ -31,6 +32,15 @@ const app = express();
 
 // 🧩 Middleware para receber dados de formulários
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// 🔐 Configuração de sessão
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'sua-chave-secreta-aqui',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 } // 24 horas
+}));
 
 // ⚙️ Configuração do EJS
 app.set('view engine', 'ejs');
