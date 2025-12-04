@@ -5,7 +5,7 @@ import { dirname, join } from 'path';
 import mongoose from 'mongoose';
 import session from 'express-session';
 // garante conexão com o MongoDB (arquivo faz o connect)
-import './config/conexao.js';
+import '../config/conexao.js';
 
 // 🔗 Importação das rotas antigas
 import routes from '../routes/route.js';
